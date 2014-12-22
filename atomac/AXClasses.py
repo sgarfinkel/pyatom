@@ -21,6 +21,7 @@ import Quartz
 import time
 
 from AppKit import NSURL, NSString, NSDictionary, NSArray
+from Cocoa import NSUTF8StringEncoding
 from PyObjCTools import AppHelper
 from collections import deque
 
@@ -170,7 +171,7 @@ class BaseAXUIElement(_a11y.AXUIElement):
         ''' launchAppByBundlePath - Launch app with a given bundle path
             Return True if succeed
         '''
-        bundleUrl = NSURL.URLWithString_(bundlePath)
+        bundleUrl = NSURL.fileURLWithPath_(bundlePath)
         workspace = AppKit.NSWorkspace.sharedWorkspace()
         arguments_strings = map(lambda a: NSString.stringWithString_(str(a)), arguments)
         arguments = NSDictionary.dictionaryWithDictionary_({
